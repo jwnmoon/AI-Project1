@@ -40,7 +40,22 @@ class Plan:
         if block1.air:
             block1.on = table
             block1.clear = True
-            block1.air = False 
+            block1.air = False
+
+    def pickup(self, block1):
+        """
+        Operator to pick the block from the table
+        :param block1: block1 to pick up from the table
+        :type block1: Object of block.Block
+        :return: None
+        """
+        # get table object from initial state
+        table = State.find(self.initial_state, "table")
+
+        if block1.on and block1.clear:
+            block1.air = True
+            block1.clear = False
+            block1.on = None
 
     def unstack(self, block1, block2):
         """
@@ -54,20 +69,13 @@ class Plan:
 
         # if block1 is clear safe to unstack
         if block1.clear:
-
             # block1 should be in air
             # block1 should not be on block2
             # set block2 to clear (because block1 is in air)
             block1.clear = False
             block1.air = True
             block1.on = None
-
             block2.clear = True
-
-    def move(self):
-        pass 
-    #dummy operator 
-
 
     # ***=========================================
     # After you implement all the operators
@@ -105,7 +113,6 @@ class Plan:
 
 if __name__ == "__main__":
 
-    #I need to implement MOVE opertor 
     # get the initial state
     initial_state = State()
     initial_state_blocks = initial_state.create_state_from_file("input.txt")
