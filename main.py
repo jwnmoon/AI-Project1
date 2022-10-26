@@ -77,6 +77,10 @@ class Plan:
             block1.on = None
             block2.clear = True
 
+    def move(self):
+        #dummy function
+        pass 
+
     # ***=========================================
     # After you implement all the operators
     # The next step is to implement the actual plan.
